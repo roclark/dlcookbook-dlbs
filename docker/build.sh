@@ -145,7 +145,7 @@ for dockerfile_dir in "$@"; do
 
     # If we are building tensorrt docker, we need to copy source of benchmark
     # project to docker context folder
-    if [ "$name" == "tensorrt" ]; then
+    if [ "$name" == "tensorrt" || "$name" == "tensorrt-5.0-rc" ]; then
         # One special thing about building TensorRT images is that we need to have
         # a TensorRT package in a docker file folder. The name of that file must be
         # specified in a 'versions' file - so we need verify user has copied this
