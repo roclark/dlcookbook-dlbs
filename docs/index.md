@@ -14,6 +14,17 @@ Deep Learning Benchmarking Suite (DLBS) is a collection of command line tools fo
 Deep Learning Benchmarking Suite was tested on various servers with Ubuntu / RedHat / CentOS operating systems with and without NVIDIA GPUs. We have a little success with running DLBS on top of AMD GPUs, but this is mostly untested. It may not work with Mac OS due to slightly different command line API of some of the tools we use (like, for instance, sed) - we will fix this in one of the next releases.
 
 ## Installation
+The simplest method is to build a container containing the DLBS code and running the container using a config file. To build a ready-to-use container, perform the following:
+
+```bash
+docker build -t dlbs/tensorrt:19.03-py2 .
+docker run --rm -v $(pwd)/config.json:/dlbs/scripts/config.json -v $(pwd)/output:/dlbs_output dlbs/tensorrt:19.03-py2
+```
+
+This will run a benchmark using the `config.json` file in the local directory and output all results to the `./output` directory.
+
+If installation of the cookbook on bare-metal hosts is desired, follow the steps below:
+
 1. Install Docker and NVIDIA Docker for containerized benchmarks. Read [here](https://hewlettpackard.github.io/dlcookbook-dlbs/#/docker/docker?id=docker) why we prefer to use docker and [here](https://hewlettpackard.github.io/dlcookbook-dlbs/#/docker/install_docker?id=installing-docker) for installing/troubleshooting tips. This is not required. DLBS can work with bare metal framework installations.
 2. Clone Deep Learning Benchmarking Suite from [GitHub](https://github.com/HewlettPackard/dlcookbook-dlbs)
    ```bash

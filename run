@@ -1,0 +1,16 @@
+#!/bin/bash
+#------------------------------------------------------------------------------#
+# Run benchmarks with real data stored on DDN storage
+#------------------------------------------------------------------------------#
+export BENCH_ROOT=$( cd $( dirname "${BASH_SOURCE[0]}" ) && pwd )
+export CUDA_CACHE_PATH=/dev/shm/cuda_cache
+. ${BENCH_ROOT}/environment.sh
+
+#su -c "setenforce 0"
+#------------------------------------------------------------------------------#
+script=$DLBS_ROOT/python/dlbs/experimenter.py            # Script that runs benchmarks
+parser=$DLBS_ROOT/python/dlbs/logparser.py               # Script that parses log files
+sb=$DLBS_ROOT/python/dlbs/reports/summary_builder.py     # Script that builds reports
+
+# Run experiments.
+/usr/bin/python $script run --log-level=info --config=${BENCH_ROOT}/config.json
